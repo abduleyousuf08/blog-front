@@ -20,7 +20,7 @@ function BlogCard(props) {
           </div>
           <div className="space-y-1.5">
             <div className="leading-4">
-              <h4>Mohamed ahmed</h4>
+              <h4>Mohamed Ahmed</h4>
               <small className="text-gray-400">Jan 12</small>
             </div>
             <div>

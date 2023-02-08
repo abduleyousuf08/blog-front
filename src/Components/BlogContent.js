@@ -1,6 +1,10 @@
 import BlogComments from "./BlogComments";
 
 function BlogContent(props) {
+  
+  // const firstName = props.data.user.firstName
+  // console.log(firstName)
+  
   return (
     <div className="flex-1">
       <div className="bg-white rounded-md">
@@ -19,7 +23,7 @@ function BlogContent(props) {
               />
             </div>
             <div className="leading-4">
-              <h4>Mohamed Ahmed</h4>
+              <h4>..</h4>
               <small className="text-gray-400">Jan 12</small>
             </div>
           </div>

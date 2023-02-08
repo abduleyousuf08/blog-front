@@ -1,6 +1,6 @@
 import Comment from "./Comment";
 import { UserContext } from "../Utils/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -10,8 +10,19 @@ function BlogComments() {
   const { id } = useParams();
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState("");
+  const [Comments , setComments] = useState([])
   const token = localStorage.getItem("token");
+//fetching the comments from database using useEffect 
+useEffect(()=>{
+axios.get(`http://localhost:10000/comments/getcomment/${id}`).then((res)=>{
+setComments(res.data.getComment)
+}).catch((e)=>[
+  console.log(e)
 
+])
+},[])
+
+//handling onSubmit button to save the comment
   function handleOnSubmit() {
     axios
       .post(
@@ -34,7 +45,8 @@ function BlogComments() {
   return (
     <div className="border-t py-5 px-16">
       <h1 className="font-bold text-2xl">Top comment(s)</h1>
-      {user && (
+      
+      {user && 
         <div className="py-5">
           <div className="flex space-x-2">
             <div className="h-12 w-12">
@@ -54,9 +66,19 @@ function BlogComments() {
               Submit
             </button>
           </div>
+          
+          
         </div>
-      )}
-      <Comment />
+        
+      }
+      
+      {/* {getComment.map((comment)=>{
+              <Comment data={comment}/> */}
+
+       {Comments.map((comment)=> <Comment data={comment}/>)}
+              
+              
+     
     </div>
   );
 }

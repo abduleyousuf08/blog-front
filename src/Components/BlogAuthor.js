@@ -1,4 +1,6 @@
 function BlogAuthor(props) {
+  // const{location,work} = props.user
+  // console.log(work)
   return (
     <div className="basis-1/4 bg-white rounded-md h-fit">
       <div className="bg-gray-900 rounded-t-md h-8"></div>
@@ -15,12 +17,12 @@ function BlogAuthor(props) {
         <p className="py-3"></p>
         <div className="py-2 space-y-1.5">
           <div>
-            <h3 className="font-bold text-gray-500">Location</h3>
-            <h3></h3>
+            <h3 className="font-bold text-gray-500">location</h3>
+            <h3>..</h3>
           </div>
           <div>
             <h3 className="font-bold text-gray-500">Work</h3>
-            <h3></h3>
+            <h3>....</h3>
           </div>
           <div>
             <h3 className="font-bold text-gray-500">Joined`</h3>

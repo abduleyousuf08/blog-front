@@ -1,4 +1,9 @@
-function Comment(){
+import { useState } from "react"
+
+
+function Comment(props){
+  console.log(props.data)
+ 
     return (
         <div className="py-5">
           <div className="flex space-x-2">
@@ -7,10 +12,10 @@ function Comment(){
                 </div>
                 <div className="border w-full rounded-md p-3">
                     <div className="flex items-center space-x-1">
-                        <h2>Aisha Mohamed</h2>
+                        <h2>{props.data.user.firstName} {props.data.user.lastName}</h2>
                         <h2 className="text-gray-500">12 Jan</h2>
                     </div>
-                    <p className="text-lg py-2">Thanks for this article! Such a great read hope you post more!!</p>
+                    <p className="text-lg py-2">{props.data.comment}</p>
                 </div> 
                 </div>
             </div>

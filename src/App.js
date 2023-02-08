@@ -12,6 +12,8 @@ import ChangePassword from "./Pages/ChangePassword";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "./Utils/UserContext";
+import Edit from "./Pages/Edit";
+import axios from "axios";
 
 import { useState, useEffect } from "react";
 
@@ -48,6 +50,8 @@ function App() {
                   </ProtectRoute>
                 }
               />
+              <Route path="/Edit/:id" element={<Edit />} />
+
               <Route
                 path="/new"
                 element={

@@ -25,6 +25,10 @@ function Home() {
         {blogs.map((blog) => (
           <BlogCard data={blog} />
         ))}
+
+        {/* {blogs.map((blogs)=>{
+          <BlogCard data={blogs}/>
+        })} */}
       </div>
       <div className="basis-1/4">
         <div className="bg-slate-50 py-2 rounded-md">
