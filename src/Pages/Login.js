@@ -3,11 +3,12 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { UserContext } from "../Utils/UserContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [inputs, setInputs] = useState({});
   const { setUser } = useContext(UserContext);
-
+  const navigate = useNavigate();
   function handleOnSubmit() {
     axios
       .post("http://localhost:10000/auth/login", inputs)
@@ -15,6 +16,7 @@ function Login() {
         localStorage.setItem("token", res.data.token);
         setUser(true);
         toast.success(res.data.message);
+        navigate("/");
       })
       .catch((e) => {
         toast.error(e.response.data.message);

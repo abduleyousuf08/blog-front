@@ -3,13 +3,30 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function Profile() {
-  const [inputs, setInputs] = useState({});
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [location, setLocation] = useState("");
+  const [bio, setBio] = useState("");
+  const [work, setWork] = useState("");
+  const [image, setImage] = useState("");
   const token = localStorage.getItem("token");
 
+  const [userData, setUserData] = useState({});
+
   function handleOnSubmit() {
+    //forming data to sent the backend
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("location", location);
+    formData.append("bio", bio);
+    formData.append("work", work);
+    formData.append("image", image);
+
     axios
-      .put("http://localhost:10000/auth/signup/profile", inputs, {
+      .put("http://localhost:10000/auth/signup/profile", formData, {
         headers: { Authorization: token },
+        ContentType: "multipart/form-data",
       })
       .then((res) => {
         toast.success(res.data.message);
@@ -30,7 +47,7 @@ function Profile() {
         <input
           className="w-full border p-2 rounded-md"
           type="text"
-          onChange={(e) => setInputs({ ...inputs, firstName: e.target.value })}
+          onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
       <div className="my-2 space-y-2">
@@ -38,7 +55,7 @@ function Profile() {
         <input
           className="w-full border p-2 rounded-md"
           type="text"
-          onChange={(e) => setInputs({ ...inputs, lastName: e.target.value })}
+          onChange={(e) => setLastName(e.target.value)}
         />
       </div>
       <div className="my-2 space-y-2">
@@ -46,7 +63,7 @@ function Profile() {
         <input
           className="w-full border p-2 rounded-md"
           type="text"
-          onChange={(e) => setInputs({ ...inputs, location: e.target.value })}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </div>
       <div className="my-2 space-y-2">
@@ -54,7 +71,7 @@ function Profile() {
         <textarea
           className="border w-full rounded-md p-2"
           placeholder="Bio."
-          onChange={(e) => setInputs({ ...inputs, bio: e.target.value })}
+          onChange={(e) => setBio(e.target.value)}
         ></textarea>
       </div>
       <div className="my-2 space-y-2">
@@ -62,11 +79,11 @@ function Profile() {
         <textarea
           className="border w-full rounded-md p-2"
           placeholder="Work."
-          onChange={(e) => setInputs({ ...inputs, work: e.target.value })}
+          onChange={(e) => setWork(e.target.value)}
         ></textarea>
       </div>
       <div className="mt-4">
-        <input type="file" />
+        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
       </div>
       <div className="flex justify-center mt-5">
         <button

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function BlogList() {
+  const [updated, setUpdated] = useState(false);
   const token = localStorage.getItem("token");
   const [blogs, setBlogs] = useState([]);
   const [id, setId] = useState();
@@ -58,15 +59,19 @@ function BlogList() {
                 {blogs.title} ({blogs.content})
               </td>
 
-              <Link to={`/Edit/${blogs._id}`}>
-                <button>
-                  <CiEdit className="text-blue-800" />
-                </button>
-              </Link>
+              <td>
+                <Link to={`/Edit/${blogs._id}`}>
+                  <button>
+                    <CiEdit className="text-blue-800" />
+                  </button>
+                </Link>
+              </td>
 
-              <button onClick={() => fetchingDelete(blogs._id)}>
-                <MdOutlineDelete className="text-red-500" />
-              </button>
+              <td>
+                <button onClick={() => fetchingDelete(blogs._id)}>
+                  <MdOutlineDelete className="text-red-500 " />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
